@@ -270,7 +270,7 @@ export class WalletRPC {
         break;
 
       case "create_wallet":
-        this.createWallet(params.name, params.password, params.language);
+        this.createWallet(params.name, params.password, params.language, params.hardware_wallet);
         break;
 
       case "restore_wallet":
@@ -507,13 +507,19 @@ export class WalletRPC {
     });
   }
 
-  createWallet(filename, password, language) {
+  isHardwareWallet(filename) {
+    let hwfile = path.join(this.wallet_dir, filename + ".hwdev.txt");
+    return fs.existsSync(hwfile);
+  }
+
+  createWallet(filename, password, language, hardware_wallet) {
     // Reset the status error
     this.sendGateway("reset_wallet_error");
     this.sendRPC("create_wallet", {
       filename,
       password,
-      language
+      language,
+      hardware_wallet: !!hardware_wallet
     }).then(data => {
       if (data.hasOwnProperty("error")) {
         this.sendGateway("set_wallet_error", { status: data.error });
@@ -700,6 +706,10 @@ export class WalletRPC {
             errorOnExist: true
           });
         }
+
+        if (fs.existsSync(import_path + ".hwdev.txt")) {
+          fs.copySync(import_path + ".hwdev.txt", destination + ".hwdev.txt", fs.constants.COPYFILE_EXCL);
+        }
       } catch (e) {
         this.sendGateway("set_wallet_error", {
           status: {
@@ -787,6 +797,10 @@ export class WalletRPC {
         }
       }
 
+      if (this.isHardwareWallet(filename)) {
+        wallet.info.hardware_wallet = true;
+      }
+
       this.saveWallet().then(() => {
         let address_txt_path = path.join(
           this.wallet_dir,
@@ -833,6 +847,9 @@ export class WalletRPC {
         });
       }
 
+      const hardware_wallet_file = path.join(this.wallet_dir, filename + ".hwdev.txt");
+      const hardware_wallet = fs.existsSync(hardware_wallet_file);
+
       // store hash of the password so we can check against it later when requesting private keys, or for sending txs
       this.wallet_state.password_hash = crypto
         .pbkdf2Sync(password, this.auth[2], 1000, 64, "sha512")
@@ -843,6 +860,12 @@ export class WalletRPC {
       this.startHeartbeat();
 
       this.purchasedNames = {};
+
+      this.sendGateway("set_wallet_data", {
+        info: {
+          hardware_wallet
+        }
+      });
 
       // Check if we have a view only wallet by querying the spend key
       this.sendRPC("query_key", { key_type: "spend_key" }).then(data => {
@@ -2665,16 +2688,19 @@ export class WalletRPC {
           return;
         }
 
-        // Exclude all files without a keys extension
-        if (path.extname(filename) !== ".keys") return;
+        // Exclude all files without a keys or .hwdev.txt extensions
+        const hardware_wallet_ext = ".hwdev.txt";
+        const hardware_wallet = filename.includes(hardware_wallet_ext);
+        if (path.extname(filename) !== ".keys" && !hardware_wallet) return;
 
-        const wallet_name = path.parse(filename).name;
+        const wallet_name = path.parse(filename).name.split(".")[0];
         if (!wallet_name) return;
 
         let wallet_data = {
           name: wallet_name,
           address: null,
-          password_protected: null
+          password_protected: null,
+          hardware_wallet
         };
 
         if (

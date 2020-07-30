@@ -50,12 +50,17 @@
         />
       </OxenField>
 
-      <q-btn
-        class="submit-button"
-        color="primary"
-        :label="$t('buttons.createWallet')"
-        @click="create"
-      />
+      <q-field class="q-pb-sm">
+        <q-checkbox v-model="wallet.hardware_wallet" :label="$t('strings.hardwareWallet')" :dark="theme == 'dark'" />
+      </q-field>
+
+      <OxenField v-if="!wallet.hardware_wallet" :label="$t('fieldLabels.seedLanguage')">
+        <q-select v-model="wallet.language" :options="languageOptions" :dark="theme == 'dark'" hide-underline />
+      </OxenField>
+
+      <q-field>
+        <q-btn color="primary" :label="$t('buttons.createWallet')" @click="create" />
+      </q-field>
     </div>
   </q-page>
 </template>
@@ -88,7 +93,8 @@ export default {
         name: "",
         language: languageOptions[0].value,
         password: "",
-        password_confirm: ""
+        password_confirm: "",
+        hardware_wallet: false
       },
       languageOptions
     };
