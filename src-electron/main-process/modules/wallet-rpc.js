@@ -2688,19 +2688,17 @@ export class WalletRPC {
           return;
         }
 
-        // Exclude all files without a keys or .hwdev.txt extensions
-        const hardware_wallet_ext = ".hwdev.txt";
-        const hardware_wallet = filename.includes(hardware_wallet_ext);
-        if (path.extname(filename) !== ".keys" && !hardware_wallet) return;
+        // Exclude all files without keys
+        if (path.extname(filename) !== ".keys") return;
 
-        const wallet_name = path.parse(filename).name.split(".")[0];
+        const wallet_name = path.parse(filename).name;
         if (!wallet_name) return;
 
         let wallet_data = {
           name: wallet_name,
           address: null,
           password_protected: null,
-          hardware_wallet
+          hardware_wallet: false
         };
 
         if (
@@ -2727,6 +2725,10 @@ export class WalletRPC {
           if (address) {
             wallet_data.address = address;
           }
+        }
+
+        if (fs.existsSync(path.join(this.wallet_dir, wallet_name + ".hwdev.txt"))) {
+          wallet_data.hardware_wallet = true;
         }
 
         wallets.list.push(wallet_data);
