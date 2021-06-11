@@ -6,11 +6,24 @@
           <div class="header-title">
             {{ $t("titles.yourWallets") }}
           </div>
-          <q-btn v-if="wallet_list.length" class="add" icon="add" size="md" color="primary">
-            <q-popover class="header-popover">
-              <q-list separator link>
-                <q-item v-for="action in actions" :key="action.name" @click.native="action.handler">
-                  <q-item-main :label="action.name" />
+          <q-btn
+            v-if="wallets.list.length"
+            class="add"
+            icon="add"
+            size="md"
+            color="primary"
+          >
+            <q-menu class="header-popover" :content-class="'header-popover'">
+              <q-list separator>
+                <q-item
+                  v-for="action in actions"
+                  :key="action.name"
+                  clickable
+                  @click.native="action.handler"
+                >
+                  <q-item-section>
+                    {{ action.name }}
+                  </q-item-section>
                 </q-item>
               </q-list>
             </q-menu>
@@ -18,7 +31,9 @@
         </div>
         <div class="hr-separator" />
         <!-- Hardware wallets -->
-        <q-list-header v-if="hardware_wallets.length">{{ $t("strings.hardwareWallets") }}</q-list-header>
+        <q-list-header v-if="hardware_wallets.length">{{
+          $t("strings.hardwareWallets")
+        }}</q-list-header>
         <WalletListItem
           v-for="wallet in hardware_wallets"
           :key="`${wallet.address}-${wallet.name}`"
@@ -26,7 +41,9 @@
           :open-wallet="openWallet"
         />
         <!-- Regular wallets -->
-        <q-list-header v-if="hardware_wallets.length">{{ $t("strings.regularWallets") }}</q-list-header>
+        <q-list-header v-if="hardware_wallets.length">{{
+          $t("strings.regularWallets")
+        }}</q-list-header>
         <WalletListItem
           v-for="wallet in regular_wallets"
           :key="`${wallet.address}-${wallet.name}`"

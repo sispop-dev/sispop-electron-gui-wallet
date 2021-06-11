@@ -1,7 +1,7 @@
 <template>
   <q-item @click.native="openWallet(wallet)">
-    <q-item-side>
-      <div class="wallet-icon">
+    <q-item-section avatar>
+      <q-icon class="wallet-icon">
         <svg
           width="48"
           viewBox="0 0 17 16"
@@ -28,24 +28,19 @@
             </g>
           </g>
         </svg>
-      </div>
-    </q-item-side>
-    <q-item-main>
-      <q-item-tile label>{{ wallet.name }}</q-item-tile>
-      <q-item-tile class="monospace ellipsis" sublabel>{{ wallet.address }}</q-item-tile>
-    </q-item-main>
-
-    <q-context-menu>
-      <q-list link separator style="min-width: 150px; max-height: 300px;">
-        <q-item v-close-overlay @click.native="openWallet(wallet)">
-          <q-item-main :label="$t('menuItems.openWallet')" />
-        </q-item>
-
-        <q-item v-close-overlay @click.native="copyAddress(wallet.address, $event)">
-          <q-item-main :label="$t('menuItems.copyAddress')" />
-        </q-item>
-      </q-list>
-    </q-context-menu>
+      </q-icon>
+    </q-item-section>
+    <q-item-section>
+      <q-item-label class="wallet-name" caption>{{ wallet.name }}</q-item-label>
+      <q-item-label class="monospace ellipsis" caption>{{
+        wallet.address
+      }}</q-item-label>
+    </q-item-section>
+    <ContextMenu
+      :menu-items="menuItems"
+      @openWallet="openWallet(wallet)"
+      @copyAddress="copyAddress(wallet.address)"
+    />
   </q-item>
 </template>
 

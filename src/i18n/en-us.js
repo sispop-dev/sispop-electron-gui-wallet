@@ -517,7 +517,6 @@ export default {
       "Here you can find all the ONS names owned by this wallet. Decrypting a record you own will return the name and value of that ONS record.",
     hardwareWallet: "Hardware wallet",
     hardwareWallets: "Hardware wallets",
-      "Purchase or update a name for a Session ID. If you purchase a name, it may take a minute or two for it to show up in the list.",
     loadingSettings: "Loading settings",
     oxenBalance: "Balance",
     lokinetNameDescription:
@@ -546,13 +545,9 @@ export default {
     recentIncomingTransactionsToAddress:
       "Recent incoming transactions to this address",
     recentTransactionsWithAddress: "Recent transactions with this address",
-<<<<<<< HEAD
+    regularWallets: "Regular wallets",
     rescanModalDescription:
       "Select full rescan or rescan of spent outputs only.",
-=======
-    regularWallets: "Regular wallets",
-    rescanModalDescription: "Select full rescan or rescan of spent outputs only.",
->>>>>>> Display hardware wallets separetely
     saveSeedWarning: "Please copy and save these in a secure location!",
     saveToAddressBook: "Save to address book",
     seedWords: "Seed words",
