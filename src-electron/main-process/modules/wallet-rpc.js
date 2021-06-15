@@ -270,7 +270,12 @@ export class WalletRPC {
         break;
 
       case "create_wallet":
-        this.createWallet(params.name, params.password, params.language, params.hardware_wallet);
+        this.createWallet(
+          params.name,
+          params.password,
+          params.language,
+          params.hardware_wallet
+        );
         break;
 
       case "restore_wallet":
@@ -519,7 +524,8 @@ export class WalletRPC {
       filename,
       password,
       language,
-      hardware_wallet: !!hardware_wallet
+      hardware_wallet: !!hardware_wallet,
+      device_label: hardware_wallet ? "hardware_wallet" : undefined
     }).then(data => {
       if (data.hasOwnProperty("error")) {
         this.sendGateway("set_wallet_error", { status: data.error });
@@ -708,7 +714,11 @@ export class WalletRPC {
         }
 
         if (fs.existsSync(import_path + ".hwdev.txt")) {
-          fs.copySync(import_path + ".hwdev.txt", destination + ".hwdev.txt", fs.constants.COPYFILE_EXCL);
+          fs.copySync(
+            import_path + ".hwdev.txt",
+            destination + ".hwdev.txt",
+            fs.constants.COPYFILE_EXCL
+          );
         }
       } catch (e) {
         this.sendGateway("set_wallet_error", {
@@ -817,7 +827,11 @@ export class WalletRPC {
 
       this.sendGateway("set_wallet_data", wallet);
 
-      this.startHeartbeat();
+      if (this.isHardwareWallet(filename)) {
+        this.startHeartbeat(10);
+      } else {
+        this.startHeartbeat();
+      }
     });
   }
 
@@ -847,7 +861,10 @@ export class WalletRPC {
         });
       }
 
-      const hardware_wallet_file = path.join(this.wallet_dir, filename + ".hwdev.txt");
+      const hardware_wallet_file = path.join(
+        this.wallet_dir,
+        filename + ".hwdev.txt"
+      );
       const hardware_wallet = fs.existsSync(hardware_wallet_file);
 
       // store hash of the password so we can check against it later when requesting private keys, or for sending txs
@@ -857,7 +874,11 @@ export class WalletRPC {
       this.wallet_state.name = filename;
       this.wallet_state.open = true;
 
-      this.startHeartbeat();
+      if (hardware_wallet) {
+        this.startHeartbeat(10);
+      } else {
+        this.startHeartbeat();
+      }
 
       this.purchasedNames = {};
 
@@ -883,17 +904,17 @@ export class WalletRPC {
     });
   }
 
-  startHeartbeat() {
+  startHeartbeat(multiplier = 1) {
     clearInterval(this.heartbeat);
     this.heartbeat = setInterval(() => {
       this.heartbeatAction();
-    }, 5000);
+    }, 5000 * multiplier);
     this.heartbeatAction(true);
 
     clearInterval(this.onsHeartbeat);
     this.onsHeartbeat = setInterval(() => {
       this.updateLocalONSRecords();
-    }, 30 * 1000); // Every 30 seconds
+    }, 30 * 1000 * multiplier); // Every 30 seconds
     this.updateLocalONSRecords();
   }
 
@@ -1710,6 +1731,9 @@ export class WalletRPC {
   // send address and tx fees before sending
   // isSweepAll refers to if it's the sweep from service nodes page
   transfer(password, amount, address, priority, isSweepAll) {
+    console.log(
+      "TODO sean remove this - wallet: " + JSON.stringify(this.wallet)
+    );
     const cryptoCallback = (err, password_hash) => {
       if (err) {
         this.sendGateway("set_tx_status", {
@@ -2727,7 +2751,9 @@ export class WalletRPC {
           }
         }
 
-        if (fs.existsSync(path.join(this.wallet_dir, wallet_name + ".hwdev.txt"))) {
+        if (
+          fs.existsSync(path.join(this.wallet_dir, wallet_name + ".hwdev.txt"))
+        ) {
           wallet_data.hardware_wallet = true;
         }
 
