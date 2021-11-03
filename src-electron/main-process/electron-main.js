@@ -13,7 +13,7 @@ const path = require("upath");
  * The reason we are setting it here is that the path needs to be evaluated at runtime
  */
 if (process.env.PROD) {
-  global.__statics = path.join(__dirname, "statics").replace(/\\/g, "\\\\");
+  global.__statics = path.join(__dirname, "").replace(/\\/g, "\\\\");
   global.__ryo_bin = path.join(__dirname, "..", "bin").replace(/\\/g, "\\\\");
 } else {
   global.__ryo_bin = path.join(process.cwd(), "bin").replace(/\\/g, "\\\\");

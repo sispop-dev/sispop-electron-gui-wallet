@@ -165,7 +165,7 @@ module.exports = function() {
 
         linux: {
           target: ["AppImage", "deb"],
-          icon: "src-electron/icon.png",
+          icon: "oxen-electron-wallet.png",
           category: "Finance"
         },
 
