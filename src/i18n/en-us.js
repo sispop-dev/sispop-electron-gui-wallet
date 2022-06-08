@@ -504,6 +504,7 @@ export default {
     destinationUnknown: "Destination Unknown",
     editAddressBookEntry: "Edit address book entry",
     expirationHeight: "Expiration height",
+    nextPayout: "Next payout",
     ons: {
       sessionID: "Session ID",
       wallet: "Wallet Address",
@@ -519,6 +520,7 @@ export default {
     oxenBalance: "Balance",
     lokinetNameDescription:
       "Purchase or update a name on Lokinet. If you purchase a name it may take a minute or two for it to show up in the list. To learn more about lokinet visit: ",
+    oxenAccumulatedRewards: "Accumulated rewards",
     oxenUnlockedBalance: "Unlocked balance",
     oxenUnlockedShort: "Unlocked",
     me: "Me",
@@ -575,6 +577,7 @@ export default {
     signAndVerifyDescription:
       "Sign data with your primary address's private key or verify a signature against a public address.",
     spendKey: "Spend key",
+    stake: "Staking",
     startingDaemon: "Starting daemon",
     startingWallet: "Starting wallet",
     switchToDateSelect: "Switch to date select",

@@ -10,6 +10,8 @@ export const resetWalletData = state => {
       height: 0,
       balance: 0,
       unlocked_balance: 0,
+      accrued_balance: 0,
+      accrued_balance_next_payout: 0,
       view_only: false
     },
     secret: {

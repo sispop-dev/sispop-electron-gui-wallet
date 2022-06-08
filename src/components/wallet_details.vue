@@ -8,18 +8,45 @@
       <div class="row justify-center">
         <div class="funds column items-center">
           <div class="balance">
-            <div class="text">
-              <span>{{ $t("strings.oxenBalance") }}</span>
-            </div>
+            <q-btn-toggle
+              v-model="balancestakeselector"
+              text-color="white"
+              toggle-text-color="primary"
+              flat
+              :options="[
+                {
+                  label: $t('strings.oxenBalance'),
+                  value: 'balance'
+                },
+                {
+                  label: $t('strings.stake'),
+                  value: 'stake'
+                }
+              ]"
+            />
             <div class="value">
               <span><FormatOxen :amount="info.balance"/></span>
             </div>
           </div>
-          <div class="row unlocked">
+          <div v-if="balancestakeselector != 'stake'" class="row unlocked">
             <span
               >{{ $t("strings.oxenUnlockedShort") }}:
               <FormatOxen :amount="info.unlocked_balance"
             /></span>
+          </div>
+          <div v-if="balancestakeselector == 'stake'" class="row unlocked">
+            <span v-if="info.accrued_balance > 0"
+              >{{ $t("strings.oxenAccumulatedRewards") }}:
+              <FormatOxen :amount="info.accrued_balance" />•
+              {{ $t("strings.nextPayout") }}:
+              <FormatNextPayout
+                :payout-block="info.accrued_balance_next_payout"
+                :current-block="info.height"
+              />
+            </span>
+            <span v-if="info.accrued_balance == 0">
+              No accumulated rewards from staking
+            </span>
           </div>
         </div>
       </div>
@@ -34,19 +61,26 @@
 <script>
 import { mapState } from "vuex";
 import FormatOxen from "components/format_oxen";
+import FormatNextPayout from "components/format_next_payout";
 import WalletSettings from "components/menus/wallet_settings";
 import CopyIcon from "components/icons/copy_icon";
 export default {
   name: "WalletDetails",
   components: {
     FormatOxen,
+    FormatNextPayout,
     WalletSettings,
     CopyIcon
   },
   computed: mapState({
     theme: state => state.gateway.app.config.appearance.theme,
     info: state => state.gateway.wallet.info
-  })
+  }),
+  data() {
+    return {
+      balancestakeselector: "balance"
+    };
+  }
 };
 </script>
 
