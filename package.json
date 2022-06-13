@@ -1,6 +1,6 @@
 {
   "name": "oxen-electron-wallet",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Modern GUI interface for Oxen Currency",
   "productName": "Oxen Electron Wallet",
   "repository": {
@@ -63,7 +63,6 @@
     "eslint-plugin-vue": "^5.2.3",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
-    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "sass-loader": "^7.1.0",
     "strip-ansi": "^3.0.1"
