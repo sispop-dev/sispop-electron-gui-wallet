@@ -16,6 +16,30 @@ jobs:
       - name: Checkout git repo
         uses: actions/checkout@v1
 
+      - name: Download macos oxend binaries
+        if: runner.os == 'macOS'
+        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-macos-LATEST.tar.xz
+        env:
+          OS: ${{ runner.os }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+
+      - name: Download windows oxend binaries
+        if: runner.os == 'Windows'
+        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-windows-LATEST.zip
+        env:
+          OS: ${{ runner.os }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+
+      - name: Download linux oxend binaries
+        if: runner.os == 'Linux'
+        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-linux-LATEST.tar.xz
+        env:
+          OS: ${{ runner.os }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+
       # Read node version from `.nvmrc` file
       - name: Read nvm rc
         id: nvmrc
@@ -28,36 +52,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Download oxend binaries
-        run: ./download-release-bins.sh
-        env:
-          OS: ${{ runner.os }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        working-directory: ./downloads
-
-      - name: Extract zip binaries
-        if: runner.os == 'Windows'
-        run: unzip latest
-        shell: bash
-        working-directory: ./downloads
-
-      - name: Extract xz binaries
-        if: runner.os != 'Windows'
-        run: tar -xf latest
-        shell: bash
-        working-directory: ./downloads
-
-      - name: Move oxend binaries
-        run: |
-          find ./downloads -type f -name "oxend*" -exec cp '{}' ./bin \;
-          find ./downloads -type f -name "oxen-wallet-rpc*" -exec cp '{}' ./bin \;
-        shell: bash
-
-      - name: Verify binaries
-        run: ls ./bin
-        shell: bash
 
       - name: Publish window and linux binaries
         if: runner.os != 'macOS'
