@@ -158,7 +158,7 @@ module.exports = function() {
 
         appId: "com.oxen.electron-wallet",
         productName: "Oxen Electron Wallet",
-        copyright: "Copyright © 2018-2021 Oxen, 2018 Ryo Currency Project",
+        copyright: "Copyright © 2018-2022 Oxen, 2018 Ryo Currency Project",
         afterSign: "build/notarize.js",
         artifactName: "oxen-electron-wallet-${version}-${os}.${ext}",
         publish: "github",
