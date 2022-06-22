@@ -245,7 +245,7 @@ export default {
   }),
   methods: {
     openUserWalletInfo(contributorAddress) {
-      const url = `https://www.lokisn.com/user/${contributorAddress}`;
+      const url = `https://www.oxensn.com/user/${contributorAddress}`;
       this.$gateway.send("core", "open_url", {
         url
       });
