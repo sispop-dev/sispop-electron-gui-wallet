@@ -32,7 +32,7 @@ jobs:
 
       - name: Download windows oxend binaries
         if: runner.os == 'Windows'
-        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-windows-LATEST.zip
+        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-win-LATEST.zip
         env:
           OS: ${{ runner.os }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +58,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
 
       - name: Build window and linux binaries
         if: runner.os != 'macOS'
