@@ -26,7 +26,7 @@ jobs:
 
       - name: Download windows oxend binaries
         if: runner.os == 'Windows'
-        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-dev-windows-LATEST.zip
+        run: tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-dev-win-LATEST.zip
         env:
           OS: ${{ runner.os }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
