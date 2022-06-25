@@ -23,6 +23,27 @@ branch_or_tag=${DRONE_BRANCH:-${DRONE_TAG:-unknown}}
 
 upload_to="oxen.rocks/${DRONE_REPO// /_}/${branch_or_tag// /_}"
 
+MACOS_APP=${MACOS_APP:-"dist/electron/Packaged/mac/Oxen Electron Wallet.app"}
+if [ "$(uname -s)" == "Darwin" ]; then
+    if codesign -v "$MACOS_APP"; then
+        echo -e "\e[32;1mApp is codesigned!"
+    else
+        echo -e "\e[33;1mApp is not codesigned; renaming to -unsigned"
+        if [ -z "$MAC_BUILD_IS_CODESIGNED" ]; then
+            for f in dist/electron/Packaged/{oxen-electron-wallet,latest}*-mac*; do
+                if [[ $f = *\** ]]; then  # Unexpanded glob means it didn't match anything
+                    echo "Did not find any files matching $f"
+                fi
+                newname="${f/mac/mac-unsigned}"
+                mv "$f" "$newname"
+                if [[ "$f" = *.yml ]]; then
+                    sed -ie 's/-mac/-mac-unsigned/' "$newname"
+                fi
+            done
+        fi
+    fi
+fi
+
 puts=
 for f in dist/electron/Packaged/{oxen-electron-wallet-*,latest*.yml}; do
     if [[ $f = *\** ]]; then  # Unexpanded glob means it didn't match anything
