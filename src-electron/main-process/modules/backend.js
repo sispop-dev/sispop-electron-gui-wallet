@@ -136,6 +136,10 @@ export class Backend {
       {
         host: "public.loki.foundation",
         port: "22023"
+      },
+      {
+        host: "oxen-rpc.caliban.org",
+        port: "22023"
       }
     ];
 
