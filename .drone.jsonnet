@@ -80,16 +80,11 @@ local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
         name: 'build',
         environment: {
           SSH_KEY: { from_secret: 'SSH_KEY' },
-          CSC_LINK: 'tools/macos-codesign-cert.p12',
-          CSC_KEY_PASSWORD: { from_secret: 'CSC_KEY_PASSWORD' },
-          SIGNING_APPLE_ID: { from_secret: 'SIGNING_APPLE_ID' },
-          SIGNING_APP_PASSWORD: { from_secret: 'SIGNING_APP_PASSWORD' },
-          SIGNING_TEAM_ID: 'SUQ8J2PCT7',
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false',
         },
         commands: [
           'echo "Building on ${DRONE_STAGE_MACHINE}"',
           './tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-macos-LATEST.tar.xz',
-          'if [ -z "$${SIGNING_APPLE_ID}" ]; then export CSC_IDENTITY_AUTO_DISCOVERY=false; fi',
           'npm --version',
           'node --version',
           'mkdir -p $CCACHE_DIR/electron-builder',
