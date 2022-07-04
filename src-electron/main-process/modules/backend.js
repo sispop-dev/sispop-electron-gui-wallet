@@ -122,19 +122,15 @@ export class Backend {
 
     this.remotes = [
       {
-        host: "imaginary.stream",
+        host: "public-na.optf.ngo",
         port: "22023"
       },
       {
-        host: "nodes.hashvault.pro",
-        port: "22023"
-      },
-      {
-        host: "explorer.loki.aussie-pools.com",
+        host: "explorer.oxen.aussie-pools.com",
         port: "18081"
       },
       {
-        host: "public.loki.foundation",
+        host: "public-eu.optf.ngo",
         port: "22023"
       },
       {
