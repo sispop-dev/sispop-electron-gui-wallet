@@ -34,9 +34,9 @@ export default {
       balance: 0,
       unlocked_balance: 0,
       view_only: false,
-      hardware_wallet: false
+      hardware_wallet: false,
       accrued_balance: 0,
-      accrued_balance_next_payout: 0,
+      accrued_balance_next_payout: 0
 
     },
     secret: {
