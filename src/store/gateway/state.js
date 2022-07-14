@@ -33,9 +33,11 @@ export default {
       height: 0,
       balance: 0,
       unlocked_balance: 0,
+      view_only: false,
+      hardware_wallet: false,
       accrued_balance: 0,
-      accrued_balance_next_payout: 0,
-      view_only: false
+      accrued_balance_next_payout: 0
+
     },
     secret: {
       mnemonic: "",
