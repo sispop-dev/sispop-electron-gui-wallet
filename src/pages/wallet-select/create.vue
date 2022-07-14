@@ -187,11 +187,9 @@ export default {
           },
           cancel: {
             flat: true,
-            label: this.$t("dialog.buttons.cancel"),
-            color: this.theme === "dark" ? "white" : "dark"
+            label: this.$t("dialog.buttons.cancel")
           },
-          dark: this.theme == "dark",
-          color: "positive"
+          color: "primary"
         });
         passwordPromise
           .onOk(() => {

@@ -20,7 +20,7 @@ export class Gateway extends EventEmitter {
 
     let theme = LocalStorage.has("theme")
       ? LocalStorage.getItem("theme")
-      : "dark";
+      : "light";
     this.app.store.commit("gateway/set_app_data", {
       config: {
         appearance: {

@@ -158,15 +158,30 @@ module.exports = function() {
 
         appId: "com.oxen.electron-wallet",
         productName: "Oxen Electron Wallet",
-        copyright: "Copyright © 2018-2021 Oxen, 2018 Ryo Currency Project",
+        copyright: "Copyright © 2018-2022 Oxen, 2018 Ryo Currency Project",
         afterSign: "build/notarize.js",
         artifactName: "oxen-electron-wallet-${version}-${os}.${ext}",
         publish: "github",
 
         linux: {
           target: ["AppImage", "deb"],
-          icon: "src-electron/icon.png",
+          icon: "oxen-electron-wallet.png",
           category: "Finance"
+        },
+        // see https://www.electron.build/configuration/linux#debian-package-options
+        deb: {
+          depends: [
+            "libgtk-3-0",
+            "libnotify4",
+            "libnss3",
+            "libxss1",
+            "libxtst6",
+            "xdg-utils",
+            "libatspi2.0-0",
+            "libuuid1",
+            "libsecret-1-0",
+            "libappindicator3-1 | libayatana-appindicator3-1"
+          ]
         },
 
         mac: {

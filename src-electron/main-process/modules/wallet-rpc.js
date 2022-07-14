@@ -25,6 +25,8 @@ export class WalletRPC {
       password_hash: null,
       balance: null,
       unlocked_balance: null,
+      accrued_balance: null,
+      accrued_balance_next_payout: null,
       onsRecords: []
     };
     this.isRPCSyncing = false;
@@ -777,6 +779,8 @@ export class WalletRPC {
           address: "",
           balance: 0,
           unlocked_balance: 0,
+          accrued_balance: 0,
+          accrued_balance_next_payout: 0,
           height: 0,
           view_only: false
         },
@@ -797,6 +801,9 @@ export class WalletRPC {
         } else if (n.method == "getbalance") {
           wallet.info.balance = n.result.balance;
           wallet.info.unlocked_balance = n.result.unlocked_balance;
+          wallet.info.accrued_balance = n.result.accrued_balance;
+          wallet.info.accrued_balance_next_payout =
+            n.result.accrued_balance_next_payout;
         } else if (n.method == "query_key") {
           wallet.secret[n.params.key_type] = n.result.key;
           if (n.params.key_type == "spend_key") {
@@ -972,7 +979,10 @@ export class WalletRPC {
         } else if (n.method == "getbalance") {
           if (
             this.wallet_state.balance == n.result.balance &&
-            this.wallet_state.unlocked_balance == n.result.unlocked_balance
+            this.wallet_state.unlocked_balance == n.result.unlocked_balance &&
+            this.wallet_state.accrued_balance == n.result.accrued_balance &&
+            this.wallet_state.accrued_balance_next_payout ==
+              n.result.accrued_balance_next_payout
           ) {
             continue;
           }
@@ -980,6 +990,10 @@ export class WalletRPC {
           this.wallet_state.balance = wallet.info.balance = n.result.balance;
           this.wallet_state.unlocked_balance = wallet.info.unlocked_balance =
             n.result.unlocked_balance;
+          this.wallet_state.accrued_balance = wallet.info.accrued_balance =
+            n.result.accrued_balance;
+          this.wallet_state.accrued_balance_next_payout = wallet.info.accrued_balance_next_payout =
+            n.result.accrued_balance_next_payout;
           this.sendGateway("set_wallet_data", {
             info: wallet.info
           });
@@ -2162,7 +2176,10 @@ export class WalletRPC {
           info: {
             address: data[0].result.address,
             balance: data[1].result.balance,
-            unlocked_balance: data[1].result.unlocked_balance
+            unlocked_balance: data[1].result.unlocked_balance,
+            accrued_balance: data[1].result.accrued_balance,
+            accrued_balance_next_payout:
+              data[1].result.accrued_balance_next_payout
             // num_unspent_outputs: data[1].result.num_unspent_outputs
           },
           address_list: {
@@ -2933,6 +2950,8 @@ export class WalletRPC {
       password_hash: null,
       balance: null,
       unlocked_balance: null,
+      accrued_balance: null,
+      accrued_balance_next_payout: null,
       onsRecords: []
     };
 

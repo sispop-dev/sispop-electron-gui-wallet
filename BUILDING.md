@@ -1,42 +1,43 @@
 # Building
 
-Building oxen electron wallet binaries is done using github actions. Windows and linux binaries will build right out of the box but there are some extra steps needed for Mac OS
+Set up the supported versions of npm/node/etc.:
 
-## Mac OS
+    nvm use
 
-The build script for Mac OS requires you to have a valid `Developer ID Application` certificate. Without this the build script cannot sign and notarize the mac binary which is needed for Catalina 10.15 and above.
-If you would like to disable this then comment out `"afterSign": "build/notarize.js",` in package.json.
+## Linux, Windows
 
-You will also need an [App-specific password](https://support.apple.com/en-al/HT204397) for the apple account you wish to notarize with
+    npm run build
 
-### Setup
+## MacOS
 
-Once you have your `Developer ID Application` you need to export it into a `.p12` file. Keep a note of the password used to encrypt this file as it will be needed later.
+If you don't care about signing (i.e. you are not going to distribute) then you should be able to
+simply `npm run build`.
 
-We need to Base64 encode this file, so run the following command:
+When you want to distribute the app, however, you need to do a bunch of crap to satisfy Apple's
+arbitrary security theatre Rube Goldberg machine that purports to keep users safe but in reality is
+designed to further Apple lock-in control of the Apple ecosystem.
 
-```
-base64 -i certificate.p12 -o encoded.txt
-```
+1.  You have to pay Apple money (every year) to get a developer account.
+2.  You need a `Developer ID Application` certificate, created and signed from the Apple, and loaded
+    into your system keychain. `security find-identity -v` should show it.
+3.  You need to create an [App-specific password](https://support.apple.com/en-al/HT204397) for the
+    Apple developer account under which you are notarizing.
+4.  In the project root, create a `.env` file with contents:
 
-#### On GitHub:
+        SIGNING_APPLE_ID=your-developer-id@example.com
+        SIGNING_APP_PASSWORD=app-specific-password
 
-1.  Navigate to the main page of the repository.
-2.  Under your repository name, click **Settings**.
-3.  In the left sidebar, click **Secrets**.
-4.  Add the following secrets:
-    1.  Certificate
-        - Name: `MAC_CERTIFICATE`
-        - Value: The encoded Base64 certificate
-    2.  Certificate password
-        - Name: `MAC_CERTIFICATE_PASSWORD`
-        - Value: The password that was set when the certificate was exported.
-    3.  Apple ID
-        - Name: `SIGNING_APPLE_ID`
-        - Value: The apple id (email) to use for signing
-    4.  Apple Password
-        - Name: `SIGNING_APP_PASSWORD`
-        - Value: The app-specific password that was generated for the apple id
-    5.  Team ID (Optional)
-        - Name: `SIGNING_TEAM_ID`
-        - Value: The apple team id if you're sigining the application for a team
+    This password can be plaintext if absolutely needed (e.g. in a CI job) but should be a [keychain
+    reference](https://github.com/electron/electron-notarize#safety-when-using-appleidpassword) such
+    as `@keychain:some-token` for better security where feasible.
+
+    - If you have multiple ids and need to use a particular signing team ID you can add:
+
+      SIGNING_TEAM_ID=TEAMIDXYZ1
+
+5.  If building from a remote connection (e.g. ssh'd into a mac) then unlock the keychain for that
+    session by running `security unlock`.
+
+With all of that set up, your `npm run build` should produce a signed and notarized installer.
+Hopefully. Maybe. Sometimes Apple's servers are broken and you might have to try again. But don't
+worry, Apple's incompetence around signing makes everything more secure because... reasons.
