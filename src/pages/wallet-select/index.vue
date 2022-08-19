@@ -31,9 +31,13 @@
         </div>
         <div class="hr-separator" />
         <!-- Hardware wallets -->
-        <q-list-header v-if="hardware_wallets.length">{{
-          $t("strings.hardwareWallets")
-        }}</q-list-header>
+        <q-list-header v-if="hardware_wallets.length">
+          <div class="header row justify-between items-center">
+            <div class="header-title">
+              {{ $t("strings.hardwareWallets") }}
+            </div>
+          </div>
+        </q-list-header>
         <WalletListItem
           v-for="wallet in hardware_wallets"
           :key="`${wallet.address}-${wallet.name}`"
@@ -41,9 +45,13 @@
           :open-wallet="openWallet"
         />
         <!-- Regular wallets -->
-        <q-list-header v-if="hardware_wallets.length">{{
-          $t("strings.regularWallets")
-        }}</q-list-header>
+        <q-list-header v-if="hardware_wallets.length">
+          <div class="header row justify-between items-center">
+            <div class="header-title">
+              {{ $t("strings.regularWallets") }}
+            </div>
+          </div>
+        </q-list-header>
         <WalletListItem
           v-for="wallet in regular_wallets"
           :key="`${wallet.address}-${wallet.name}`"
