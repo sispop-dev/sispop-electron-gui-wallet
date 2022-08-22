@@ -72,13 +72,20 @@ export default {
         node.contributors.find(
           c => c.address === this.our_address && c.amount > 0
         );
-      return nodes.filter(getOurContribution).map(n => {
-        const ourContribution = getOurContribution(n);
-        return {
-          ...n,
-          ourContributionAmount: ourContribution.amount
-        };
-      });
+      return nodes
+        .filter(getOurContribution)
+        .sort((a, b) => {
+          if (a.service_node_pubkey < b.service_node_pubkey) return -1;
+          if (a.service_node_pubkey > b.service_node_pubkey) return 1;
+          return 0;
+        })
+        .map(n => {
+          const ourContribution = getOurContribution(n);
+          return {
+            ...n,
+            ourContributionAmount: ourContribution.amount
+          };
+        });
     },
     fetching: state => state.gateway.daemon.service_nodes.fetching
   }),
