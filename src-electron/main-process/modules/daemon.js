@@ -29,25 +29,25 @@ export class Daemon {
   checkVersion() {
     return new Promise(resolve => {
       if (process.platform === "win32") {
-        let oxend_path = path.join(__ryo_bin, "oxend.exe");
-        let oxend_version_cmd = `"${oxend_path}" --version`;
-        if (!fs.existsSync(oxend_path)) {
+        let sispopd_path = path.join(__ryo_bin, "sispopd.exe");
+        let sispopd_version_cmd = `"${sispopd_path}" --version`;
+        if (!fs.existsSync(sispopd_path)) {
           resolve(false);
         }
-        child_process.exec(oxend_version_cmd, (error, stdout) => {
+        child_process.exec(sispopd_version_cmd, (error, stdout) => {
           if (error) {
             resolve(false);
           }
           resolve(stdout);
         });
       } else {
-        let oxend_path = path.join(__ryo_bin, "oxend");
-        let oxend_version_cmd = `"${oxend_path}" --version`;
-        if (!fs.existsSync(oxend_path)) {
+        let sispopd_path = path.join(__ryo_bin, "sispopd");
+        let sispopd_version_cmd = `"${sispopd_path}" --version`;
+        if (!fs.existsSync(sispopd_path)) {
           resolve(false);
         }
         child_process.exec(
-          oxend_version_cmd,
+          sispopd_version_cmd,
           { detached: true },
           (error, stdout) => {
             if (error) {
@@ -148,7 +148,7 @@ export class Daemon {
         args.push("--stagenet");
       }
 
-      args.push("--log-file", path.join(dirs[net_type], "logs", "oxend.log"));
+      args.push("--log-file", path.join(dirs[net_type], "logs", "sispopd.log"));
       if (daemon.rpc_bind_ip !== "127.0.0.1") {
         args.push("--confirm-external-bind");
       }
@@ -173,12 +173,12 @@ export class Daemon {
           if (status === "closed") {
             if (process.platform === "win32") {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "oxend.exe"),
+                path.join(__ryo_bin, "sispopd.exe"),
                 args
               );
             } else {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "oxend"),
+                path.join(__ryo_bin, "sispopd"),
                 args,
                 {
                   detached: true

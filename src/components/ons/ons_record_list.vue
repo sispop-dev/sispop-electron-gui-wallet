@@ -3,7 +3,7 @@
     <q-item
       v-for="record in recordList"
       :key="record.name_hash"
-      class="oxen-list-item"
+      class="sispop-list-item"
     >
       <q-item-section class="type" avatar>
         <q-icon :name="isLocked(record) ? 'lock' : 'lock_open'" size="24px" />

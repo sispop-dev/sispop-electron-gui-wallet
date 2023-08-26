@@ -9,7 +9,7 @@
         <b place="registerCommand">register_service_node</b>
         <b place="prepareCommand">prepare_registration</b>
       </i18n>
-      <OxenField
+      <SispopField
         :label="$t('fieldLabels.serviceNodeCommand')"
         :error="$v.registration_string.$error"
         :disabled="registration_status.sending"
@@ -17,7 +17,7 @@
         <q-input
           v-model.trim="registration_string"
           type="textarea"
-          class="full-width text-area-oxen"
+          class="full-width text-area-sispop"
           placeholder="register_service_node ..."
           :disabled="registration_status.sending"
           borderless
@@ -25,7 +25,7 @@
           @blur="$v.registration_string.$touch"
           @paste="onPaste"
         />
-      </OxenField>
+      </SispopField>
       <q-btn
         class="register-button"
         color="primary"
@@ -44,13 +44,13 @@
 <script>
 import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
-import OxenField from "components/oxen_field";
+import SispopField from "components/sispop_field";
 import WalletPassword from "src/mixins/wallet_password";
 
 export default {
   name: "ServiceNodeRegistration",
   components: {
-    OxenField
+    SispopField
   },
   mixins: [WalletPassword],
   data() {

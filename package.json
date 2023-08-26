@@ -1,16 +1,16 @@
 {
-  "name": "oxen-electron-wallet",
+  "name": "sispop-electron-wallet",
   "version": "1.8.1",
-  "description": "Modern GUI interface for Oxen Currency",
-  "productName": "Oxen Electron Wallet",
+  "description": "Modern GUI interface for Sispop Currency",
+  "productName": "Sispop Electron Wallet",
   "repository": {
     "type": "git",
-    "url": "https://github.com/loki-project/loki-electron-gui-wallet.git"
+    "url": "https://github.com/sispop-dev/sispop-electron-gui-wallet.git"
   },
-  "cordovaId": "com.oxen.wallet",
+  "cordovaId": "com.sispop.wallet",
   "author": {
-    "name": "Oxen",
-    "email": "oxen@oxen.io"
+    "name": "Sispop",
+    "email": "sispop@sispop.io"
   },
   "private": true,
   "scripts": {

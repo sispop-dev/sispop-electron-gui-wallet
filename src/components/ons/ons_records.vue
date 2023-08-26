@@ -1,7 +1,7 @@
 <template>
   <div class="ons-record-list">
     <div v-if="needsDecryption" class="decrypt row justify-between items-end">
-      <OxenField
+      <SispopField
         :label="$t('fieldLabels.decryptRecord')"
         :disable="decrypting"
         :error="$v.name.$error"
@@ -15,7 +15,7 @@
           :disable="decrypting"
           @blur="$v.name.$touch"
         />
-      </OxenField>
+      </SispopField>
       <div class="btn-wrapper q-ml-md row items-center">
         <q-btn
           color="primary"
@@ -59,14 +59,14 @@
 
 <script>
 import { mapState } from "vuex";
-import OxenField from "components/oxen_field";
+import SispopField from "components/sispop_field";
 import { session_name_or_lokinet_name } from "src/validators/common";
 import ONSRecordList from "./ons_record_list";
 
 export default {
   name: "ONSRecords",
   components: {
-    OxenField,
+    SispopField,
     ONSRecordList
   },
   data() {
@@ -212,7 +212,7 @@ export default {
     cursor: default;
   }
 
-  .oxen-field {
+  .sispop-field {
     flex: 1;
   }
 

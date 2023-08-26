@@ -29,35 +29,36 @@
     <!-- TODO: Move this to it's own component -->
     <q-dialog ref="aboutModal" minimized>
       <div class="about-modal">
-        <img class="q-mb-md" src="oxen.svg" height="42" />
+        <img class="q-mb-md" src="sispop.svg" height="42" />
 
         <p class="q-my-sm">Wallet Version: v{{ version }}</p>
         <p class="q-my-sm">Daemon Version: v{{ daemonVersion }}</p>
+        <p class="q-my-sm">Copyright (c) 2022-2023, Sispop</p>
         <p class="q-my-sm">Copyright (c) 2018-2021, Oxen</p>
         <p class="q-my-sm">Copyright (c) 2018, Ryo Currency Project</p>
         <p class="q-my-sm">All rights reserved.</p>
 
         <div class="q-mt-md q-mb-lg external-links">
           <p>
-            <a href="#" @click="openExternal('https://oxen.io/')"
-              >https://oxen.io/</a
+            <a href="#" @click="openExternal('https://sispop.site/')"
+              >https://sispop.site/</a
             >
           </p>
           <p>
-            <a href="#" @click="openExternal('https://t.me/Oxen_Community')"
+            <a href="#" @click="openExternal('https://t.me/Sispop_Community')"
               >Telegram</a
             >
             -
             <a
               href="#"
-              @click="openExternal('https://discordapp.com/invite/67GXfD6')"
+              @click="openExternal('https://discord.gg/9nw78CkZJb')"
               >Discord</a
             >
             -
-            <!-- readded once oxen subreddit is known -->
+            <!-- readded once sispop subreddit is known -->
             <!-- <a
               href="#"
-              @click="openExternal('https://www.reddit.com/r/LokiProject/')"
+              @click="openExternal('https://www.reddit.com/r/SispopProject/')"
               >Reddit</a
             >
             - -->
@@ -65,7 +66,7 @@
               href="#"
               @click="
                 openExternal(
-                  'https://github.com/loki-project/loki-electron-gui-wallet'
+                  'https://github.com/sispop-dev/sispop-electron-gui-wallet'
                 )
               "
               >Github</a

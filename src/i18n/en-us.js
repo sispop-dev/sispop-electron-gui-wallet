@@ -22,7 +22,7 @@ export default {
     generate: "GENERATE",
     import: "IMPORT",
     importWallet: "IMPORT WALLET | IMPORT WALLETS",
-    ons: "OXEN NAME SERVICE",
+    ons: "SISPOP NAME SERVICE",
     max: "MAX",
     min: "MIN",
     next: "NEXT",
@@ -301,7 +301,7 @@ export default {
     createNewWallet: "Create new wallet",
     deleteWallet: "Delete Wallet",
     exportTransfers: "Export Transfers",
-    exit: "Exit Oxen GUI Wallet",
+    exit: "Exit Sispop GUI Wallet",
     importOldGUIWallet: "Import wallets from old GUI",
     manageKeyImages: "Manage Key Images",
     openWallet: "Open wallet",
@@ -416,7 +416,7 @@ export default {
       noExportTransfers: "No transfers found to export",
       noKeyImageExport: "No key images found to export",
       usingLocalNode: "Could not access remote node, switching to local only",
-      usingRemoteNode: "oxend not found, using remote node"
+      usingRemoteNode: "sispopd not found, using remote node"
     }
   },
   placeholders: {
@@ -426,7 +426,7 @@ export default {
     dataToSign: "Data you want to sign with your primary address's private key",
     filterTx: "Enter an ID, name, address or amount",
     hexCharacters: "{count} hexadecimal characters",
-    onsName: "The name to purchase via Oxen Name Service",
+    onsName: "The name to purchase via Sispop Name Service",
     onsBackupOwner: "The wallet address of the backup owner",
     onsDecryptName: "A ONS name that belongs to you",
     lokinetFullAddress:
@@ -438,7 +438,7 @@ export default {
       "Optional message against which the signature is signed",
     recipientWalletAddress: "Recipient's wallet address",
     selectAFile: "Please select a file",
-    sessionId: "The Session ID to link to Oxen Name Service",
+    sessionId: "The Session ID to link to Sispop Name Service",
     signature: "Signature to verify",
     transactionNotes: "Additional notes to locally attach to the transaction",
     unsignedData: "The data as it should look before it was signed",
@@ -519,12 +519,12 @@ export default {
     hardwareWallet: "Hardware wallet",
     hardwareWallets: "Hardware wallets",
     loadingSettings: "Loading settings",
-    oxenBalance: "Balance",
+    sispopBalance: "Balance",
     lokinetNameDescription:
       "Purchase or update a name on Lokinet. If you purchase a name it may take a minute or two for it to show up in the list. To learn more about lokinet visit: ",
-    oxenAccumulatedRewards: "Accumulated rewards",
-    oxenUnlockedBalance: "Unlocked balance",
-    oxenUnlockedShort: "Unlocked",
+    sispopAccumulatedRewards: "Accumulated rewards",
+    sispopUnlockedBalance: "Unlocked balance",
+    sispopUnlockedShort: "Unlocked",
     me: "Me",
     noTransactionsFound: "No transactions found",
     notes: "Notes",
@@ -555,7 +555,7 @@ export default {
     seedWords: "Seed words",
     selectLanguage: "Select language",
     serviceNodeContributionDescription:
-      "Staking contributes to the safety of the Oxen network. For your contribution, you earn OXEN. Once staked, you will have to wait either 15 or 30 days to have your OXEN unlocked, depending on if a stake was unlocked by a contributor or the node was deregistered. To learn more about staking, please visit the documentation on the",
+      "Staking contributes to the safety of the Sispop network. For your contribution, you earn SISPOP. Once staked, you will have to wait either 15 or 30 days to have your SISPOP unlocked, depending on if a stake was unlocked by a contributor or the node was deregistered. To learn more about staking, please visit the documentation on the",
     serviceNodeRegistrationDescription:
       'Enter the {registerCommand} command produced by the daemon that is registering to become a Service Node using the "{prepareCommand}" command',
     serviceNodeStartStakingDescription:
