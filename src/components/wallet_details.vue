@@ -4,7 +4,7 @@
       <div class="title">{{ info.name }}</div>
       <WalletSettings />
     </div>
-    <div class="wallet-content oxen-navy">
+    <div class="wallet-content sispop-navy">
       <div class="row justify-center">
         <div class="funds column items-center">
           <div class="balance">
@@ -15,7 +15,7 @@
               flat
               :options="[
                 {
-                  label: $t('strings.oxenBalance'),
+                  label: $t('strings.sispopBalance'),
                   value: 'balance'
                 },
                 {
@@ -25,19 +25,19 @@
               ]"
             />
             <div class="value">
-              <span><FormatOxen :amount="info.balance"/></span>
+              <span><FormatSispop :amount="info.balance"/></span>
             </div>
           </div>
           <div v-if="balancestakeselector != 'stake'" class="row unlocked">
             <span
-              >{{ $t("strings.oxenUnlockedShort") }}:
-              <FormatOxen :amount="info.unlocked_balance"
+              >{{ $t("strings.sispopUnlockedShort") }}:
+              <FormatSispop :amount="info.unlocked_balance"
             /></span>
           </div>
           <div v-if="balancestakeselector == 'stake'" class="row unlocked">
             <span v-if="info.accrued_balance > 0"
-              >{{ $t("strings.oxenAccumulatedRewards") }}:
-              <FormatOxen :amount="info.accrued_balance" />•
+              >{{ $t("strings.sispopAccumulatedRewards") }}:
+              <FormatSispop :amount="info.accrued_balance" />•
               {{ $t("strings.nextPayout") }}:
               <FormatNextPayout
                 :payout-block="info.accrued_balance_next_payout"
@@ -60,14 +60,14 @@
 
 <script>
 import { mapState } from "vuex";
-import FormatOxen from "components/format_oxen";
+import FormatSispop from "components/format_sispop";
 import FormatNextPayout from "components/format_next_payout";
 import WalletSettings from "components/menus/wallet_settings";
 import CopyIcon from "components/icons/copy_icon";
 export default {
   name: "WalletDetails",
   components: {
-    FormatOxen,
+    FormatSispop,
     FormatNextPayout,
     WalletSettings,
     CopyIcon

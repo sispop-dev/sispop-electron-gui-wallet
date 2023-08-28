@@ -330,7 +330,7 @@ export default {
       noKeyImageExport: "Nenhuma chave de imagem encontrada para exportar",
       usingLocalNode:
         "Não foi possível aceder ao nódulo remoto, mudando para nódulo local apenas",
-      usingRemoteNode: "oxend não encontrado, utilizando nódulo remoto"
+      usingRemoteNode: "sispopd não encontrado, utilizando nódulo remoto"
     }
   },
   placeholders: {
@@ -404,9 +404,9 @@ export default {
     destinationUnknown: "Destino Desconhecido",
     editAddressBookEntry: "Editar registo do livro de endereços",
     loadingSettings: "Carregando configurações",
-    oxenBalance: "Saldo",
-    oxenUnlockedBalance: "Saldo desbloqueado",
-    oxenUnlockedShort: "Desbloqueado",
+    sispopBalance: "Saldo",
+    sispopUnlockedBalance: "Saldo desbloqueado",
+    sispopUnlockedShort: "Desbloqueado",
     noTransactionsFound: "Nenhuma transação encontrada",
     notes: "Notas",
     numberOfUnspentOutputs: "Número de outputs não gastos",

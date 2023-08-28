@@ -1,6 +1,6 @@
 <template>
   <q-page class="receive">
-    <q-list link no-border :dark="theme == 'dark'" class="oxen-list">
+    <q-list link no-border :dark="theme == 'dark'" class="sispop-list">
       <q-item-label header class="list-header">{{
         $t("strings.addresses.myPrimaryAddress")
       }}</q-item-label>
@@ -181,7 +181,7 @@ export default {
     font-weight: 400;
   }
 
-  .oxen-list-item {
+  .sispop-list-item {
     cursor: pointer;
 
     .q-item-section {

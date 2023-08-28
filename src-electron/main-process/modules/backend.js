@@ -37,20 +37,20 @@ export class Backend {
     let configDir;
     let legacyLokiConfigDir;
     if (os.platform() === "win32") {
-      configDir = "C:\\ProgramData\\oxen";
-      legacyLokiConfigDir = "C:\\ProgramData\\loki\\";
-      this.wallet_dir = `${os.homedir()}\\Documents\\Oxen`;
+      configDir = "C:\\ProgramData\\sispop";
+      legacyLokiConfigDir = "C:\\ProgramData\\sispop-1\\";
+      this.wallet_dir = `${os.homedir()}\\Documents\\Sispop`;
     } else {
-      configDir = path.join(os.homedir(), ".oxen");
-      legacyLokiConfigDir = path.join(os.homedir(), ".loki/");
-      this.wallet_dir = path.join(os.homedir(), "Oxen");
+      configDir = path.join(os.homedir(), ".sispop");
+      legacyLokiConfigDir = path.join(os.homedir(), ".sispop-1/");
+      this.wallet_dir = path.join(os.homedir(), "Sispop");
     }
 
     // if the user has used loki before, just keep the same stuff
     if (fs.existsSync(legacyLokiConfigDir)) {
       this.config_dir = legacyLokiConfigDir;
     } else {
-      // create the new, Oxen location
+      // create the new, Sispop location
       this.config_dir = configDir;
       if (!fs.existsSync(configDir)) {
         fs.mkdirpSync(configDir);
@@ -66,9 +66,9 @@ export class Backend {
     const daemon = {
       type: "remote",
       p2p_bind_ip: "0.0.0.0",
-      p2p_bind_port: 22022,
+      p2p_bind_port: 20000,
       rpc_bind_ip: "127.0.0.1",
-      rpc_bind_port: 22023,
+      rpc_bind_port: 30000,
       zmq_rpc_bind_ip: "127.0.0.1",
       out_peers: -1,
       in_peers: -1,
@@ -80,8 +80,8 @@ export class Backend {
     const daemons = {
       mainnet: {
         ...daemon,
-        remote_host: "imaginary.stream",
-        remote_port: 22023
+        remote_host: "node-1.sispop.site",
+        remote_port: 30000
       },
       stagenet: {
         ...daemon,
@@ -122,20 +122,20 @@ export class Backend {
 
     this.remotes = [
       {
-        host: "public-na.optf.ngo",
-        port: "22023"
+        host: "node-2.sispop.site",
+        port: "30000"
       },
       {
-        host: "explorer.oxen.aussie-pools.com",
-        port: "18081"
+        host: "node-3.sispop.site",
+        port: "30000"
       },
       {
-        host: "public-eu.optf.ngo",
-        port: "22023"
+        host: "node-4.sispop.site",
+        port: "30000"
       },
       {
-        host: "oxen-rpc.caliban.org",
-        port: "22023"
+        host: "node-4.sispop.site",
+        port: "30000"
       }
     ];
 
@@ -294,8 +294,8 @@ export class Backend {
         if (path) {
           const baseUrl =
             net_type === "testnet"
-              ? "https://testnet.oxen.observer"
-              : "https://oxen.observer";
+              ? "https://testnet.sispop.observer"
+              : "https://explorer.sispop.site";
           const url = `${baseUrl}/${path}/`;
           require("electron").shell.openExternal(url + params.id);
         }
@@ -348,7 +348,7 @@ export class Backend {
   async checkVersion() {
     try {
       const { data } = await axios.get(
-        "https://api.github.com/repos/loki-project/loki-electron-gui-wallet/releases/latest"
+        "https://api.github.com/repos/sispop-dev/sispop-electron-gui-wallet/releases/latest"
       );
       // remove the 'v' from front of the version
       const latestVersion = data.tag_name.substring(1);

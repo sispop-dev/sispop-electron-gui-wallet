@@ -16,7 +16,7 @@
               <span v-if="getRole(node)">{{ getRole(node) }} •</span>
               <span>
                 {{ $t("strings.contribution") }}:
-                <FormatOxen :amount="node.ourContributionAmount" />
+                <FormatSispop :amount="node.ourContributionAmount" />
               </span>
             </span>
             <!-- you only have a contribution amount of 0 if you are a "contributor"
@@ -30,9 +30,9 @@
             </span>
             <span v-if="node.awaitingContribution" class="contrib-amounts">
               {{ $t("strings.serviceNodeDetails.minContribution") }}:
-              {{ getMinContribution(node, our_address) }} OXEN •
+              {{ getMinContribution(node, our_address) }} SISPOP •
               {{ $t("strings.serviceNodeDetails.maxContribution") }}:
-              {{ openForContributionOxen(node, our_address) }} OXEN
+              {{ openForContributionSispop(node, our_address) }} SISPOP
             </span>
           </q-item-label>
         </q-item-section>
@@ -70,7 +70,7 @@
 <script>
 import { clipboard } from "electron";
 import ContextMenu from "components/menus/contextmenu";
-import FormatOxen from "components/format_oxen";
+import FormatSispop from "components/format_sispop";
 import ServiceNodeMixin from "src/mixins/service_node_mixin";
 import { mapState } from "vuex";
 
@@ -78,7 +78,7 @@ export default {
   name: "ServiceNodeList",
   components: {
     ContextMenu,
-    FormatOxen
+    FormatSispop
   },
   mixins: [ServiceNodeMixin],
   props: {

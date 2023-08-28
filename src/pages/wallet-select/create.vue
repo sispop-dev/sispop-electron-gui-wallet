@@ -1,7 +1,7 @@
 <template>
   <q-page class="create-wallet">
     <div class="fields q-mx-md q-mt-md">
-      <OxenField
+      <SispopField
         :label="$t('fieldLabels.walletName')"
         :error="$v.wallet.name.$error"
       >
@@ -14,9 +14,9 @@
           @keyup.enter="create"
           @blur="$v.wallet.name.$touch"
         />
-      </OxenField>
+      </SispopField>
 
-      <OxenField :label="$t('fieldLabels.seedLanguage')">
+      <SispopField :label="$t('fieldLabels.seedLanguage')">
         <q-select
           v-model="wallet.language"
           :options="languageOptions"
@@ -25,9 +25,9 @@
           emit-value
           map-options
         />
-      </OxenField>
+      </SispopField>
 
-      <OxenField :label="$t('fieldLabels.password')" optional>
+      <SispopField :label="$t('fieldLabels.password')" optional>
         <q-input
           v-model="wallet.password"
           type="password"
@@ -37,9 +37,9 @@
           dense
           @keyup.enter="create"
         />
-      </OxenField>
+      </SispopField>
 
-      <OxenField :label="$t('fieldLabels.confirmPassword')">
+      <SispopField :label="$t('fieldLabels.confirmPassword')">
         <q-input
           v-model="wallet.password_confirm"
           type="password"
@@ -48,7 +48,7 @@
           dense
           @keyup.enter="create"
         />
-      </OxenField>
+      </SispopField>
 
       <q-field class="q-pb-sm">
         <q-checkbox
@@ -57,7 +57,7 @@
         />
       </q-field>
 
-      <OxenField
+      <SispopField
         v-if="!wallet.hardware_wallet"
         :label="$t('fieldLabels.seedLanguage')"
       >
@@ -67,7 +67,7 @@
           :dark="theme == 'dark'"
           hide-underline
         />
-      </OxenField>
+      </SispopField>
 
       <q-field>
         <q-btn
@@ -83,10 +83,10 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapState } from "vuex";
-import OxenField from "components/oxen_field";
+import SispopField from "components/sispop_field";
 export default {
   components: {
-    OxenField
+    SispopField
   },
   data() {
     const languageOptions = [
