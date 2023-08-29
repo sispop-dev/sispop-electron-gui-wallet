@@ -118,7 +118,7 @@ async function showCannotUpdateDialog(mainWindow) {
     buttons: ["Ok"],
     title: "Cannot update",
     message:
-      "Sispop Electron Wallet failed to update but there is a new version available. Please go to https://sispop.io/ and install the new version manually."
+      "Sispop Electron Wallet failed to update but there is a new version available. Please go to https://sispop.site/ and install the new version manually."
   };
 
   return new Promise(resolve => {

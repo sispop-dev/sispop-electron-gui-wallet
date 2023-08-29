@@ -92,8 +92,8 @@ export class Backend {
       testnet: {
         ...daemon,
         type: "local",
-        p2p_bind_port: 38156,
-        rpc_bind_port: 38157
+        p2p_bind_port: 20001,
+        rpc_bind_port: 30001
       }
     };
 
@@ -294,7 +294,7 @@ export class Backend {
         if (path) {
           const baseUrl =
             net_type === "testnet"
-              ? "https://testnet.sispop.observer"
+              ? "https://testnet.sispop.site"
               : "https://explorer.sispop.site";
           const url = `${baseUrl}/${path}/`;
           require("electron").shell.openExternal(url + params.id);

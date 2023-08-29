@@ -33,7 +33,8 @@
 
         <p class="q-my-sm">Wallet Version: v{{ version }}</p>
         <p class="q-my-sm">Daemon Version: v{{ daemonVersion }}</p>
-        <p class="q-my-sm">Copyright (c) 2018-2021, Sispop</p>
+        <p class="q-my-sm">Copyright (c) 2022-2023, Sispop</p>
+        <p class="q-my-sm">Copyright (c) 2018-2021, Oxen</p>
         <p class="q-my-sm">Copyright (c) 2018, Ryo Currency Project</p>
         <p class="q-my-sm">All rights reserved.</p>
 
@@ -50,14 +51,14 @@
             -
             <a
               href="#"
-              @click="openExternal('https://discordapp.com/invite/67GXfD6')"
+              @click="openExternal('https://discord.gg/T5Xr7jzsHF')"
               >Discord</a
             >
             -
             <!-- readded once sispop subreddit is known -->
             <!-- <a
               href="#"
-              @click="openExternal('https://www.reddit.com/r/LokiProject/')"
+              @click="openExternal('https://www.reddit.com/r/SispopProject/')"
               >Reddit</a
             >
             - -->
@@ -65,7 +66,7 @@
               href="#"
               @click="
                 openExternal(
-                  'https://github.com/loki-project/loki-electron-gui-wallet'
+                  'https://github.com/sispop-dev/sispop-electron-gui-wallet'
                 )
               "
               >Github</a

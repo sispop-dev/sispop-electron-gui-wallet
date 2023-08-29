@@ -148,7 +148,7 @@ export class WalletRPC {
         if (!fs.existsSync(rpcPath)) {
           reject(
             new Error(
-              "Failed to find Sispop Wallet RPC. Please make sure your anti-virus has not removed it."
+              "Failed to find sispop Wallet RPC. Please make sure your anti-virus has not removed it."
             )
           );
           return;

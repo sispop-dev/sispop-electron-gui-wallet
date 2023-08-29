@@ -1,32 +1,32 @@
-# Oxen Electron GUI Wallet
+# Sispop Electron GUI Wallet
 
 ### Introduction
 
-Oxen (formerly Loki) is a private cryptocurrency based on Monero. Oxen aims to provide a private data transmission layer using a second layer of Service Nodes.
-More information on the project can be found on the [website](https://oxen.io) and in the [whitepaper](https://loki.network/whitepaper). Oxen is an open source project, and we encourage contributions from anyone with something to offer.
+Sispop (formerly Loki) is a private cryptocurrency based on Monero. Sispop aims to provide a private data transmission layer using a second layer of Service Nodes.
+More information on the project can be found on the [website](https://sispop.io) and in the [whitepaper](https://loki.network/whitepaper). Sispop is an open source project, and we encourage contributions from anyone with something to offer.
 
-![Oxen wallet image](./src-electron/icons/mrcuug.PNG)
+![Sispop wallet image](./src-electron/icons/mrcuug.PNG)
 
 ### About this project
 
-This is the new Electron GUI for Oxen. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Oxen Electron GUI that uses the protocol and network in a compatible manner.
+This is the new Electron GUI for Sispop. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Sispop Electron GUI that uses the protocol and network in a compatible manner.
 
 Please submit any changes as pull requests to the development branch, all changes are assessed in the development branch before being merged to master, release tags are considered stable builds for the GUI.
 
 #### Pre-requisites
 
-- Download latest [oxend](https://github.com/oxen-io/oxen-core/releases/latest)
-- Extract the oxend binaries to a folder
+- Download latest [sispopd](https://github.com/sispop-io/sispop-core/releases/latest)
+- Extract the sispopd binaries to a folder
 
 #### Commands
 
 ```
 nvm use 14.11.0
 npm install -g @quasar/cli
-git clone https://github.com/oxen-io/oxen-electron-gui-wallet
-cd oxen-electron-gui-wallet
-cp path_to_oxend_binaries/oxend bin/
-cp path_to_oxend_binaries/oxen-wallet-rpc bin/
+git clone https://github.com/sispop-io/sispop-electron-gui-wallet
+cd sispop-electron-gui-wallet
+cp path_to_sispopd_binaries/sispopd bin/
+cp path_to_sispopd_binaries/sispop-wallet-rpc bin/
 npm install
 ```
 

@@ -1,4 +1,4 @@
-local docker_image = 'registry.oxen.rocks/lokinet-ci-nodejs';
+local docker_image = 'registry.download.sispop.site/lokinet-ci-nodejs';
 
 local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
 
@@ -22,7 +22,7 @@ local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
           apt_get_quiet + ' update',
           apt_get_quiet + ' install -y eatmydata',
           'eatmydata ' + apt_get_quiet + ' dist-upgrade -y',
-          './tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-linux-LATEST.tar.xz',
+          './tools/download-sispop-files.sh https://download.sispop.site/sispop.site/sispop-core/sispop-stable-linux-LATEST.tar.xz',
           'npm --version',
           'node --version',
           'mkdir -p $CCACHE_DIR/electron-builder',
@@ -55,9 +55,9 @@ local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
           apt_get_quiet + ' update',
           apt_get_quiet + ' install -y eatmydata zip',
           'eatmydata ' + apt_get_quiet + ' dist-upgrade -y',
-          './tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-win-LATEST.zip',
-          'wine bin/oxend.exe --version',
-          'wine bin/oxen-wallet-rpc.exe --version',
+          './tools/download-sispop-files.sh https://download.sispop.site/sispop.site/sispop-core/sispop-stable-win-LATEST.zip',
+          'wine bin/sispopd.exe --version',
+          'wine bin/sispop-wallet-rpc.exe --version',
           'npm --version',
           'node --version',
           'mkdir -p $CCACHE_DIR/electron-builder',
@@ -84,7 +84,7 @@ local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
         },
         commands: [
           'echo "Building on ${DRONE_STAGE_MACHINE}"',
-          './tools/download-oxen-files.sh https://oxen.rocks/oxen-io/oxen-core/oxen-stable-macos-LATEST.tar.xz',
+          './tools/download-sispop-files.sh https://download.sispop.site/sispop.site/sispop-core/sispop-stable-macos-LATEST.tar.xz',
           'npm --version',
           'node --version',
           'mkdir -p $CCACHE_DIR/electron-builder',
