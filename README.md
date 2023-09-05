@@ -5,7 +5,6 @@
 Sispop (formerly Loki) is a private cryptocurrency based on Monero. Sispop aims to provide a private data transmission layer using a second layer of Service Nodes.
 More information on the project can be found on the [website](https://sispop.io) and in the [whitepaper](https://loki.network/whitepaper). Sispop is an open source project, and we encourage contributions from anyone with something to offer.
 
-![Sispop wallet image](./src-electron/icons/mrcuug.PNG)
 
 ### About this project
 
