@@ -520,7 +520,7 @@ export class Daemon {
           name_hash: nameHash,
           // 0 = session
           // 1 = wallet
-          // 2 = lokinet
+          // 2 = sispopnet
           types: [0, 1, 2]
         }
       ]
@@ -539,8 +539,8 @@ export class Daemon {
     return (records || []).map(record => {
       // Record type is in uint16 format
       // Session = 0
-      // Lokinet = 2
-      let type = "lokinet";
+      // Sispopnet = 2
+      let type = "sispopnet";
       if (record.type === 0) {
         type = "session";
       }

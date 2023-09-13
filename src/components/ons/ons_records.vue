@@ -31,7 +31,7 @@
       }}</span>
       <ONSRecordList
         :record-list="session_records"
-        :is-lokinet="false"
+        :is-sispopnet="false"
         @onUpdate="onUpdate"
       />
     </div>
@@ -39,17 +39,17 @@
       <span class="record-type-title">{{ $t("titles.onsWalletRecords") }}</span>
       <ONSRecordList
         :record-list="wallet_records"
-        :is-lokinet="false"
+        :is-sispopnet="false"
         @onUpdate="onUpdate"
       />
     </div>
-    <div v-if="lokinet_records.length > 0" class="records-group">
+    <div v-if="sispopnet_records.length > 0" class="records-group">
       <span class="record-type-title">{{
-        $t("titles.onsLokinetRecords")
+        $t("titles.onsSispopnetRecords")
       }}</span>
       <ONSRecordList
-        :record-list="lokinet_records"
-        :is-lokinet="true"
+        :record-list="sispopnet_records"
+        :is-sispopnet="true"
         @onUpdate="onUpdate"
         @onRenew="onRenew"
       />
@@ -60,7 +60,7 @@
 <script>
 import { mapState } from "vuex";
 import SispopField from "components/sispop_field";
-import { session_name_or_lokinet_name } from "src/validators/common";
+import { session_name_or_sispopnet_name } from "src/validators/common";
 import ONSRecordList from "./ons_record_list";
 
 export default {
@@ -92,12 +92,12 @@ export default {
     wallet_records(state) {
       return this.records_of_type(state, "wallet");
     },
-    lokinet_records(state) {
-      return this.records_of_type(state, "lokinet");
+    sispopnet_records(state) {
+      return this.records_of_type(state, "sispopnet");
     },
     needsDecryption() {
       const records = [
-        ...this.lokinet_records,
+        ...this.sispopnet_records,
         ...this.session_records,
         ...this.wallet_records
       ];
@@ -183,8 +183,8 @@ export default {
 
       let type = "session";
       // session names cannot have a "." so this is safe
-      if (name.endsWith(".loki")) {
-        type = "lokinet";
+      if (name.endsWith(".sispop")) {
+        type = "sispopnet";
       }
 
       this.$gateway.send("wallet", "decrypt_record", {
@@ -197,7 +197,7 @@ export default {
 
   validations: {
     name: {
-      session_name_or_lokinet_name
+      session_name_or_sispopnet_name
     }
   }
 };

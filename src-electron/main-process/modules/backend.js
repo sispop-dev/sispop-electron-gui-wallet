@@ -35,20 +35,20 @@ export class Backend {
 
   init(config) {
     let configDir;
-    let legacyLokiConfigDir;
+    let legacySispopConfigDir;
     if (os.platform() === "win32") {
       configDir = "C:\\ProgramData\\sispop";
-      legacyLokiConfigDir = "C:\\ProgramData\\sispop-1\\";
+      legacySispopConfigDir = "C:\\ProgramData\\sispop-1\\";
       this.wallet_dir = `${os.homedir()}\\Documents\\Sispop`;
     } else {
       configDir = path.join(os.homedir(), ".sispop");
-      legacyLokiConfigDir = path.join(os.homedir(), ".sispop-1/");
+      legacySispopConfigDir = path.join(os.homedir(), ".sispop-1/");
       this.wallet_dir = path.join(os.homedir(), "Sispop");
     }
 
-    // if the user has used loki before, just keep the same stuff
-    if (fs.existsSync(legacyLokiConfigDir)) {
-      this.config_dir = legacyLokiConfigDir;
+    // if the user has used sispop before, just keep the same stuff
+    if (fs.existsSync(legacySispopConfigDir)) {
+      this.config_dir = legacySispopConfigDir;
     } else {
       // create the new, Sispop location
       this.config_dir = configDir;

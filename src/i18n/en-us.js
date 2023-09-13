@@ -233,7 +233,7 @@ export default {
     onsType: "ONS RECORD TYPE",
     localDaemonIP: "LOCAL DAEMON IP",
     localDaemonPort: "LOCAL DAEMON PORT",
-    lokinetFullAddress: "LOKINET FULL ADDRESS",
+    sispopnetFullAddress: "SISPOPNET FULL ADDRESS",
     maxIncomingPeers: "MAX INCOMING PEERS",
     maxOutgoingPeers: "MAX OUTGOING PEERS",
     message: "MESSAGE",
@@ -287,8 +287,8 @@ export default {
     changePassword: "Change Password",
     copyAddress: "Copy address",
     copyBackupOwner: "Copy backup owner",
-    copyLokinetAddress: "Copy lokinet address",
-    copyLokinetName: "Copy lokinet name",
+    copySispopnetAddress: "Copy sispopnet address",
+    copySispopnetName: "Copy sispopnet name",
     copyName: "Copy name",
     copyOwner: "Copy owner",
     copyQR: "Copy QR code",
@@ -331,8 +331,8 @@ export default {
         imported: "Key images imported"
       },
       onsRecordUpdated: "ONS Record was successfully updated",
-      lokinetAddressCopied: "Full lokinet address copied",
-      lokinetNameCopied: "Lokinet name copied",
+      sispopnetAddressCopied: "Full sispopnet address copied",
+      sispopnetNameCopied: "Sispopnet name copied",
       passwordUpdated: "Password updated",
       namePurchased: "Name successfully purchased",
       nameRenewed: "Name successfully renewed",
@@ -429,8 +429,8 @@ export default {
     onsName: "The name to purchase via Sispop Name Service",
     onsBackupOwner: "The wallet address of the backup owner",
     onsDecryptName: "A ONS name that belongs to you",
-    lokinetFullAddress:
-      "Full lokinet address to map ONS name to (without .loki)",
+    sispopnetFullAddress:
+      "Full sispopnet address to map ONS name to (without .sispop)",
     mnemonicSeed: "25 (or 24) word mnemonic seed",
     pasteTransactionId: "Paste transaction ID",
     pasteTransactionProof: "Paste transaction proof",
@@ -508,8 +508,8 @@ export default {
     ons: {
       sessionID: "Session ID",
       wallet: "Wallet Address",
-      lokinetName1Year: "Lokinet Name 1 year",
-      lokinetNameXYears: "Lokinet Name {years} years",
+      sispopnetName1Year: "Sispopnet Name 1 year",
+      sispopnetNameXYears: "Sispopnet Name {years} years",
       prices: "ONS Prices:"
     },
     onsPurchaseDescription:
@@ -520,8 +520,8 @@ export default {
     hardwareWallets: "Hardware wallets",
     loadingSettings: "Loading settings",
     sispopBalance: "Balance",
-    lokinetNameDescription:
-      "Purchase or update a name on Lokinet. If you purchase a name it may take a minute or two for it to show up in the list. To learn more about lokinet visit: ",
+    sispopnetNameDescription:
+      "Purchase or update a name on Sispopnet. If you purchase a name it may take a minute or two for it to show up in the list. To learn more about sispopnet visit: ",
     sispopAccumulatedRewards: "Accumulated rewards",
     sispopUnlockedBalance: "Unlocked balance",
     sispopUnlockedShort: "Unlocked",
@@ -636,7 +636,7 @@ export default {
     currentlyStakedNodes: "Currently staked nodes",
     onsRecordDetails: "ONS record details",
     onsSessionRecords: "Session records",
-    onsLokinetRecords: "Lokinet records",
+    onsSispopnetRecords: "Sispopnet records",
     onsWalletRecords: "Wallet records",
     privateKeys: "Private keys",
     rescanWallet: "Rescan wallet",

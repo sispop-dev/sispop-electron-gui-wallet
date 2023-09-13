@@ -7,7 +7,7 @@
           v-model.trim="record.type"
           emit-value
           map-options
-          :options="renewing ? lokinetOptions : typeOptions"
+          :options="renewing ? sispopnetOptions : typeOptions"
           :disable="updating"
           borderless
           dense
@@ -29,14 +29,16 @@
           borderless
           dense
           :suffix="
-            record.type === 'session' || record.type === 'wallet' ? '' : '.loki'
+            record.type === 'session' || record.type === 'wallet'
+              ? ''
+              : '.sispop'
           "
           @blur="$v.record.name.$touch"
         />
       </SispopField>
     </div>
 
-    <!-- Value (Session ID, Wallet Address or .loki address) -->
+    <!-- Value (Session ID, Wallet Address or .sispop address) -->
     <div class="col q-mt-sm">
       <SispopField
         class="q-mt-md"
@@ -51,7 +53,9 @@
           dense
           :disable="renewing"
           :suffix="
-            record.type === 'session' || record.type === 'wallet' ? '' : '.loki'
+            record.type === 'session' || record.type === 'wallet'
+              ? ''
+              : '.sispop'
           "
           @blur="$v.record.value.$touch"
         />
@@ -119,8 +123,8 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import {
   address,
   session_id,
-  lokinet_address,
-  lokinet_name,
+  sispopnet_address,
+  sispopnet_name,
   session_name
 } from "src/validators/common";
 import SispopField from "components/sispop_field";
@@ -174,25 +178,32 @@ export default {
     let walletOptions = [
       { label: this.$t("strings.ons.wallet"), value: "wallet" }
     ];
-    let lokinetOptions = [
-      { label: this.$t("strings.ons.lokinetName1Year"), value: "lokinet_1y" },
+    let sispopnetOptions = [
       {
-        label: this.$t("strings.ons.lokinetNameXYears", { years: 2 }),
-        value: "lokinet_2y"
+        label: this.$t("strings.ons.sispopnetName1Year"),
+        value: "sispopnet_1y"
       },
       {
-        label: this.$t("strings.ons.lokinetNameXYears", { years: 5 }),
-        value: "lokinet_5y"
+        label: this.$t("strings.ons.sispopnetNameXYears", { years: 2 }),
+        value: "sispopnet_2y"
       },
       {
-        label: this.$t("strings.ons.lokinetNameXYears", { years: 10 }),
-        value: "lokinet_10y"
+        label: this.$t("strings.ons.sispopnetNameXYears", { years: 5 }),
+        value: "sispopnet_5y"
+      },
+      {
+        label: this.$t("strings.ons.sispopnetNameXYears", { years: 10 }),
+        value: "sispopnet_10y"
       }
     ];
-    let typeOptions = [...sessionOptions, ...walletOptions, ...lokinetOptions];
+    let typeOptions = [
+      ...sessionOptions,
+      ...walletOptions,
+      ...sispopnetOptions
+    ];
 
     const initialRecord = {
-      // Lokinet 1 year is valid on renew or purchase
+      // Sispopnet 1 year is valid on renew or purchase
       type: typeOptions[2].value,
       name: "",
       value: "",
@@ -202,7 +213,7 @@ export default {
     return {
       record: { ...initialRecord },
       typeOptions,
-      lokinetOptions
+      sispopnetOptions
     };
   },
   computed: mapState({
@@ -217,7 +228,7 @@ export default {
       } else if (this.record.type === "wallet") {
         return this.$t("fieldLabels.walletAddress");
       } else {
-        return this.$t("fieldLabels.lokinetFullAddress");
+        return this.$t("fieldLabels.sispopnetFullAddress");
       }
     },
     can_update() {
@@ -243,7 +254,7 @@ export default {
       } else if (this.record.type === "wallet") {
         return this.$t("placeholders.walletAddress");
       } else {
-        return this.$t("placeholders.lokinetFullAddress");
+        return this.$t("placeholders.sispopnetFullAddress");
       }
     },
     owner_placeholder() {
@@ -370,8 +381,8 @@ export default {
           if (this.record.type === "session") {
             return session_name(_value);
           } else {
-            // shortened lokinet ONS name
-            return lokinet_name(_value);
+            // shortened sispopnet ONS name
+            return sispopnet_name(_value);
           }
         }
       },
@@ -389,8 +400,8 @@ export default {
           } else if (this.record.type === "wallet") {
             return this.isAddress(value);
           } else {
-            // full lokinet address
-            return lokinet_address(_value);
+            // full sispopnet address
+            return sispopnet_address(_value);
           }
         }
       },

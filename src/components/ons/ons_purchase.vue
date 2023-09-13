@@ -16,19 +16,19 @@
             <td>7 SISPOP</td>
           </tr>
           <tr>
-            <td>{{ $t("strings.ons.lokinetName1Year") }}:</td>
+            <td>{{ $t("strings.ons.sispopnetName1Year") }}:</td>
             <td>7 SISPOP</td>
           </tr>
           <tr>
-            <td>{{ $t("strings.ons.lokinetNameXYears", { years: 2 }) }}:</td>
+            <td>{{ $t("strings.ons.sispopnetNameXYears", { years: 2 }) }}:</td>
             <td>14 SISPOP</td>
           </tr>
           <tr>
-            <td>{{ $t("strings.ons.lokinetNameXYears", { years: 5 }) }}:</td>
+            <td>{{ $t("strings.ons.sispopnetNameXYears", { years: 5 }) }}:</td>
             <td>28 SISPOP</td>
           </tr>
           <tr>
-            <td>{{ $t("strings.ons.lokinetNameXYears", { years: 10 }) }}:</td>
+            <td>{{ $t("strings.ons.sispopnetNameXYears", { years: 10 }) }}:</td>
             <td>42 SISPOP</td>
           </tr>
         </table>

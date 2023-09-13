@@ -1,4 +1,4 @@
-local docker_image = 'registry.download.sispop.site/lokinet-ci-nodejs';
+local docker_image = 'registry.download.sispop.site/sispopnet-ci-nodejs';
 
 local apt_get_quiet = 'apt-get -o=Dpkg::Use-Pty=0 -q';
 

@@ -1139,17 +1139,17 @@ export class WalletRPC {
   }
 
   /*
-  Renews an ONS (Lokinet) mapping, since they can expire
+  Renews an ONS (Sispopnet) mapping, since they can expire
   type can be:
-  lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
+  sispopnet_1y, sispopnet_2y, sispopnet_5y, sispopnet_10y
   */
   onsRenewMapping(password, type, name) {
     let _name = name.trim().toLowerCase();
 
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
+    // the RPC accepts names with the .sispop already appeneded only
+    // can be sispopnet_1y, sispopnet_2y, sispopnet_5y, sispopnet_10y
+    if (type.startsWith("sispopnet")) {
+      _name = _name + ".sispop";
     }
 
     crypto.pbkdf2(
@@ -1214,9 +1214,9 @@ export class WalletRPC {
   */
   async decryptONSRecord(type, name) {
     let _type = type;
-    // type can initially be "lokinet_1y" etc. on a purchase
-    if (type.startsWith("lokinet")) {
-      _type = "lokinet";
+    // type can initially be "sispopnet_1y" etc. on a purchase
+    if (type.startsWith("sispopnet")) {
+      _type = "sispopnet";
     }
     try {
       const record = await this.getONSRecord(_type, name);
@@ -1260,8 +1260,8 @@ export class WalletRPC {
   Get a ONS record associated with the given name
   */
   async getONSRecord(type, name) {
-    // We support session, wallet and lokinet
-    const types = ["session", "wallet", "lokinet"];
+    // We support session, wallet and sispopnet
+    const types = ["session", "wallet", "sispopnet"];
     if (!types.includes(type)) return null;
 
     if (!name || name.trim().length === 0) return null;
@@ -1269,8 +1269,8 @@ export class WalletRPC {
     const lowerCaseName = name.toLowerCase();
 
     let fullName = lowerCaseName;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "sispopnet" && !name.endsWith(".sispop")) {
+      fullName = fullName + ".sispop";
     }
 
     const nameHash = await this.hashONSName(type, lowerCaseName);
@@ -1297,8 +1297,8 @@ export class WalletRPC {
     if (!type || !name) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "sispopnet" && !name.endsWith(".sispop")) {
+      fullName = fullName + ".sispop";
     }
 
     try {
@@ -1325,8 +1325,8 @@ export class WalletRPC {
     if (!type || !name || !encrypted_value) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "sispopnet" && !name.endsWith(".sispop")) {
+      fullName = fullName + ".sispop";
     }
 
     try {
@@ -1853,11 +1853,11 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
-      value = value + ".loki";
+    // the RPC accepts names with the .sispop already appeneded only
+    // can be sispopnet_1y, sispopnet_2y, sispopnet_5y, sispopnet_10y
+    if (type.startsWith("sispopnet")) {
+      _name = _name + ".sispop";
+      value = value + ".sispop";
     }
 
     crypto.pbkdf2(
@@ -1925,11 +1925,11 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // updated records have type "lokinet" or "session"
+    // updated records have type "sispopnet" or "session"
     // UI passes the values without the extension
-    if (type === "lokinet") {
-      _name = _name + ".loki";
-      value = value + ".loki";
+    if (type === "sispopnet") {
+      _name = _name + ".sispop";
+      value = value + ".sispop";
     }
 
     crypto.pbkdf2(
@@ -2785,9 +2785,9 @@ export class WalletRPC {
       wallets.legacy = [];
       let legacy_paths = [];
       if (os.platform() == "win32") {
-        legacy_paths = ["C:\\ProgramData\\Loki"];
+        legacy_paths = ["C:\\ProgramData\\Sispop"];
       } else {
-        legacy_paths = [path.join(os.homedir(), "Loki")];
+        legacy_paths = [path.join(os.homedir(), "Sispop")];
       }
       for (var i = 0; i < legacy_paths.length; i++) {
         try {
