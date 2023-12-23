@@ -2,8 +2,8 @@
 
 ### Introduction
 
-Sispop (formerly Loki) is a private cryptocurrency based on Monero. Sispop aims to provide a private data transmission layer using a second layer of Service Nodes.
-More information on the project can be found on the [website](https://sispop.io) and in the [whitepaper](https://loki.network/whitepaper). Sispop is an open source project, and we encourage contributions from anyone with something to offer.
+Sispop is a private cryptocurrency based on oxen and Monero. Sispop aims to provide a private data transmission layer using a second layer of Service Nodes.
+More information on the project can be found on the [website](https://sispop.site) and in the [whitepaper](https://github.com/sispop-dev/sispop/releases/download/v10.0.0/SISPOP_whitepaper.pdf). Sispop is an open source project, and we encourage contributions from anyone with something to offer.
 
 
 ### About this project
@@ -14,7 +14,7 @@ Please submit any changes as pull requests to the development branch, all change
 
 #### Pre-requisites
 
-- Download latest [sispopd](https://github.com/sispop-io/sispop-core/releases/latest)
+- Download latest [sispopd](https://github.com/sispop-dev/sispop/releases/latest)
 - Extract the sispopd binaries to a folder
 
 #### Commands
@@ -22,7 +22,7 @@ Please submit any changes as pull requests to the development branch, all change
 ```
 nvm use 14.11.0
 npm install -g @quasar/cli
-git clone https://github.com/sispop-io/sispop-electron-gui-wallet
+git clone https://github.com/sispop-dev/sispop-electron-gui-wallet
 cd sispop-electron-gui-wallet
 cp path_to_sispopd_binaries/sispopd bin/
 cp path_to_sispopd_binaries/sispop-wallet-rpc bin/
